@@ -2,6 +2,10 @@
 
 This is a small prototype application built using AngularJS. 
 
+## DEMO
+
+See it in action: (coming soon)
+
 ## Purpose
 
 Create an inventory of your wardrobe to better manage your clothing.
