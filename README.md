@@ -4,7 +4,7 @@ This is a small prototype application built using AngularJS.
 
 ## DEMO
 
-See it in action: (coming soon)
+See it in action: [jsFiddle - code](http://jsfiddle.net/urimchoi/h28g4/) or [jsFiddle - fullScreen](http://jsfiddle.net/urimchoi/h28g4/embedded/result/)
 
 ## Purpose
 
