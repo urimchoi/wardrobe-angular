@@ -17,3 +17,9 @@ Create an inventory of your wardrobe to better manage your clothing.
 ### Future Features
 
 **Show stats:** Show key stats such as average cost of item, popular brand, most expensive item, most recent purchase, etc.
+
+## Technology Used
+
+* HTML5 Boilerplate
+* Twitter Bootstrap
+* AngularJS
