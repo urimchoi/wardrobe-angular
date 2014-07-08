@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="wardrobe"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+
+        <!-- Twitter Bootstrap -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body ng-controller="WardrobeController as wardrobe">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="container-fluid">  
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Stuck in the Closet</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li><a>Home</a></li>
+              <li><a href="#">Add</a></li>
+            </ul>
+          </div>
+        </nav>
+        <section>
+          <article class="col-sm-3">
+            <!-- Add Porduct Module -->
+            <div ng-controller="AddController as addCtrl" ng-submit="addCtrl.addProduct(product)">
+              <form name="addProduct">
+                <div >
+                  <img ng-src="{{addCtrl.product.image}}" style='width:100%;' />
+                  <h3>{{addCtrl.product.title}}</h3>
+                  <small>Added 3 months ago</small>
+                  <dl>
+                    <dt>Brand</dt>
+                    <dd>{{addCtrl.product.brand}}</dd>
+                    <dt>Price</dt>
+                    <dd>{{addCtrl.product.price | currency}}</dd>
+                    <dt>Purchased</dt>
+                    <dd>{{addCtrl.product.date}}</dd>
+                    <dt>Category</dt>
+                    <dd>{{addCtrl.product.category}}</dd>
+                  </dl>
+                </div>
+
+                <fieldset class='form-group'>
+                  <label>Title</label>
+                  <input ng-model="addCtrl.product.title" class="form-control" placeholder="Title" />
+                </fieldset>
+                <fieldset class='form-group'>
+                  <label>Brand</label>
+                  <input ng-model="addCtrl.product.brand" class="form-control" placeholder="Brand" />
+                </fieldset>
+                <fieldset class='form-group'>
+                  <label>Price</label>
+                  <input ng-model="addCtrl.product.price" class="form-control" placeholder="Price" />
+                </fieldset>
+                <fieldset class='form-group'>
+                  <label>Image</label>
+                  <input ng-model="addCtrl.product.image" class="form-control" placeholder="Image URL" />
+                </fieldset>
+                <fieldset class='form-group'>
+                  <label>Category</label>
+                  <select ng-model="addCtrl.product.category" class="form-control" title="Category">
+                    <option value="">Select Category</option>
+                    <option ng-repeat="category in wardrobe.categories" value="{{category.title}}">{{category.title}}</option>
+                  </select>
+                </fieldset>
+                <fieldset class="form-group">
+                  <input type="submit" class="btn btn-primary" value="Add Product" />
+                </fieldset>
+              </form>
+            </div>
+          </article>
+          <article class="col-sm-9" ng-controller='FilterController as filter'>
+            <!-- filter UI -->
+            <ul class='nav nav-pills' >
+              <li ng-repeat="category in wardrobe.categories">
+                <a href ng-click='filter.setFilter(category.title)'>{{category.title}} <span class="badge">{{category.products.length}}</span></a>
+              </li>
+              <li>
+                <!-- Search Bar -->
+                <form class="form-inline" role="form">
+                  <div class="form-group">
+                    <input class="form-control" ng-model='filter.filter' placeholder='search'>
+                  </div>
+                </form>
+              </li>
+            </ul>
+
+            <div class="spacer"></div>
+
+            <!-- Product List -->
+            <div class='col-md-3 product' ng-repeat="product in wardrobe.products | filter:filter.filter">
+              <img ng-src="{{product.image}}" style='width:100%;background:#ebebeb'>
+              <div >
+                <h3>{{product.title}}</h3>
+                <small>Added 3 months ago</small>
+                <dl>
+                  <dt>Brand</dt>
+                  <dd>{{product.brand}}</dd>
+                  <dt>Price</dt>
+                  <dd>{{product.price | currency}}</dd>
+                  <dt>Category</dt>
+                  <dd>{{product.category}}</dd>
+                </dl>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            
+          </article>
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/app.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
