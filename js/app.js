@@ -11,6 +11,9 @@
 		this.setFilter = function(filterText){
 			this.filter = filterText;
 		};
+		this.filterIsSet = function(filterText){
+			return (this.filter === filterText);
+		};
 	});
 
 	app.controller('AddController', function(){

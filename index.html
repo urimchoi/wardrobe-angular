@@ -42,6 +42,7 @@
           <article class="col-sm-3">
             <!-- Add Porduct Module -->
             <div ng-controller="AddController as addCtrl" ng-submit="addCtrl.addProduct(product)">
+              <h4>Add New Product</h4>
               <form name="addProduct">
                 <div >
                   <img ng-src="{{addCtrl.product.image}}" style='width:100%;' />
@@ -91,7 +92,7 @@
           <article class="col-sm-9" ng-controller='FilterController as filter'>
             <!-- filter UI -->
             <ul class='nav nav-pills' >
-              <li ng-repeat="category in wardrobe.categories">
+              <li ng-repeat="category in wardrobe.categories" ng-class='{ active: filter.filterIsSet(category.title) }'>
                 <a href ng-click='filter.setFilter(category.title)'>{{category.title}} <span class="badge">{{category.products.length}}</span></a>
               </li>
               <li>
