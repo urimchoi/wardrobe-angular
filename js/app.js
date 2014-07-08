@@ -10,14 +10,12 @@
 		this.filter = '';
 		this.setFilter = function(filterText){
 			this.filter = filterText;
-			console.log(filterText);
 		};
 	});
 
 	app.controller('AddController', function(){
 		this.product = {};
 		this.addProduct = function(product){
-			console.log(this.product);
 			products.push(this.product);
 			this.product = {};
 		};
